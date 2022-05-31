@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   title = 'imgur';
   images: any = [];
   url = 'https://api.imgur.com/3/gallery/hot/viral/day/0';
+  loading: boolean = true;
 
   constructor(
     private imgurService: ImgurService,
@@ -39,6 +40,7 @@ export class AppComponent implements OnInit {
   }
 
   getAlbum() {
+    this.loading = true;
     this.images = this.imgurService.getAlbum(this.url).subscribe({
       next: (album: { data: any }) => {
         this.images = album.data;
@@ -46,6 +48,8 @@ export class AppComponent implements OnInit {
           // console.log(image);
           return image.images && image.images[0].type !== 'video/mp4';
         });
+        this.loading = false;
+
         // console.log(this.images);
       },
       error: (err: any) => console.log(err),
