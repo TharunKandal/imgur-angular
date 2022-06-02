@@ -1,6 +1,29 @@
 # Imgur
 
+This is an Gallery App which displays the Images in a responsive Grid.
+
+. The Gallery grid uses Cards to display the images and Card Body for the Description of Images .
+. The Images are Filtered out using DropDowns - By Sections and Time Period .
+. Images are sorted based on the Specification - 1. Viral , 2.Top, 3.Time, 4.Rising
+
+## Approach
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.5.
+
+`ng new` command is used to create default Angular App .
+
+`Material Design Bootstrap ` - UI KIT is used for the Layout and Styled Components like Cards , Nav and DropDowns .
+
+`imgur Service` is used to fetch the data from the Imgur Service using an Observable from `RxJs` and `HttpModule` .
+
+    . The service uses `client Id` in headers as Authorization token to access Imgur Service .
+    . The Service is injected to the `root` and accessed by the App Component .
+    . The Image Data is Initially set to the App component using `getImages()` method in `OnInit` life cycle method.
+    . The App Component binds the data to the App template by `property-Binding` technique.
+    . The Image gallery Data is filtered out using `Form Group` containing `select` Components which binds using `Form Controls`.
+    . The `Select` Dropdowns uses `EventBinding` to the `change` event to fetch the data as per `FormGroup` Specifications .
+    . The Main View is set to `Loading` animation while fetching the data.
+    . prettier is used to format the Code .
 
 ## Development server
 

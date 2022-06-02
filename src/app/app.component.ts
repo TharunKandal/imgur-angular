@@ -45,12 +45,9 @@ export class AppComponent implements OnInit {
       next: (album: { data: any }) => {
         this.images = album.data;
         this.images = this.images.filter((image: any) => {
-          // console.log(image);
           return image.images && image.images[0].type !== 'video/mp4';
         });
         this.loading = false;
-
-        // console.log(this.images);
       },
       error: (err: any) => console.log(err),
     });
