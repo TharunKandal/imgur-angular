@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
-import { ImgurService } from './services/imgur.service';
+import { ImgurService } from '../services/imgur.service';
+import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [ImgurService],
+  selector: 'app-image-grid',
+  templateUrl: './image-grid.component.html',
+  styleUrls: ['./image-grid.component.css'],
 })
-export class AppComponent implements OnInit {
+export class ImageGridComponent implements OnInit {
   title = 'imgur';
   images: any = [];
   url = 'https://api.imgur.com/3/gallery/hot/viral/day/0';
@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private imgurService: ImgurService,
-    private formBuilder: FormBuilder
+    private _location: Location
   ) {}
 
   specsForm = new FormGroup({
@@ -29,13 +29,12 @@ export class AppComponent implements OnInit {
     this.getAlbum();
   }
 
-  onSubmit() {
-    console.log(this.specsForm.value);
-  }
+  onSubmit() {}
 
   handleChange() {
-    console.log(this.specsForm.value);
     this.url = `https://api.imgur.com/3/gallery/${this.specsForm.value.section}/${this.specsForm.value.sort}/${this.specsForm.value.period}/0`;
+    // this._location.back();
+
     this.getAlbum();
   }
 

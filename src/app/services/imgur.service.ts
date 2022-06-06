@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class ImgurService {
   constructor(private http: HttpClient) {}
 
-  getAlbum(url: string): Observable<any> {
+  getImages(url: string): Observable<any> {
     return this.http
       .get(url, {
         headers: {
@@ -16,7 +16,7 @@ export class ImgurService {
         },
       })
       .pipe(
-        tap((data: any) => console.log(JSON.stringify(data))),
+        tap(),
         catchError(async (err) => console.log(err))
       );
   }
